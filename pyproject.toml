@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cf-time-seams"
+version = "0.1.0"
+description = "Calendar-aware NetCDF collection time preflight."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{name = "KanadeK"}]
+dependencies = ['netCDF4>=1.6.5,<2', 'cftime>=1.6.3,<2', 'numpy>=1.24,<3']
+
+[project.scripts]
+cf-time-seams = "cf_time_seams.cli:main"
+
+[project.urls]
+Repository = "https://github.com/KanadeK/cf-time-seams"
+Issues = "https://github.com/KanadeK/cf-time-seams/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
