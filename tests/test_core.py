@@ -51,7 +51,9 @@ class AxisTests(unittest.TestCase):
         result = self.check([a, b])
         self.assertEqual(result["counts"], {"cadence_gap": 1})
         self.assertEqual(result["findings"][0]["left"]["index"], 1)
-        self.assertEqual(result["findings"][0]["right"]["file"], str(b))
+        location = Path(result["findings"][0]["right"]["file"])
+        self.assertTrue(location.is_absolute())
+        self.assertTrue(location.samefile(b))
 
     def test_duplicate_inside_axis(self):
         result = self.check([self.nc("a.nc", [0, 1, 1, 2])])
